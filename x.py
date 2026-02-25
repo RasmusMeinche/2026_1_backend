@@ -1,3 +1,4 @@
+from flask import request
 import mysql.connector
 
 ##############################
@@ -15,7 +16,14 @@ def db():
         print(e, flush=True)
         raise Exception("Database under maintenance", 500)
 
-
-
-
-
+##############################
+USER_FIRST_NAME_MIN = 2
+USER_FIRST_NAME_MAX = 20
+def validate_user_first_name():
+    user_first_name = request.form.get("user_first_name", "").strip()
+    if len(user_first_name) < USER_FIRST_NAME_MIN:
+        raise Exception(f"User first name minimal {USER_FIRST_NAME_MIN} characters", 400)
+    user_first_name = request.form.get("user_first_name", "").strip()
+    if len(user_first_name) > USER_FIRST_NAME_MAX:
+        raise Exception(f"User first name max {USER_FIRST_NAME_MAX} characters", 400)
+    return user_first_name
