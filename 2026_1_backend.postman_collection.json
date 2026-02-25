@@ -1,0 +1,189 @@
+{
+  "info": {
+    "_postman_id": "79ac35e8-0fb0-4bbc-8235-936585629560",
+    "name": "2026_1_backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52265129",
+    "_collection_link": "https://go.postman.co/collection/52265129-79ac35e8-0fb0-4bbc-8235-936585629560?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "get all items",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Get all items is ok\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Body matches string\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"[\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "127.0.0.1/items",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "items"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get item by id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Get item by id\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Item is JSON\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"Body matches string\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"id\");",
+              "});",
+              "pm.test(\"Body matches string\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"name\");",
+              "});",
+              "pm.test(\"Body matches string\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"price\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "127.0.0.1/items/1",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "items",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create item",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response body is valid JSON\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "pm.test(\"Body matches string\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"id\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "title",
+              "value": "A",
+              "type": "text"
+            },
+            {
+              "key": "price",
+              "value": "10",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "127.0.0.1/items",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "items"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update item",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "title",
+              "value": "New title",
+              "type": "text"
+            },
+            {
+              "key": "price",
+              "value": "20",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "127.0.0.1/items/1",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "items",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
