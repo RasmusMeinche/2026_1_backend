@@ -27,3 +27,27 @@ def validate_user_first_name():
     if len(user_first_name) > USER_FIRST_NAME_MAX:
         raise Exception(f"User first name max {USER_FIRST_NAME_MAX} characters", 400)
     return user_first_name
+
+##############################
+USER_LAST_NAME_MIN = 2
+USER_LAST_NAME_MAX = 20
+def validate_user_last_name():
+    user_last_name = request.form.get("user_last_name", "").strip()
+    if len(user_last_name) < USER_LAST_NAME_MIN:
+        raise Exception(f"User last name minimal {USER_LAST_NAME_MIN} characters", 400)
+    user_last_name = request.form.get("user_last_name", "").strip()
+    if len(user_last_name) > USER_LAST_NAME_MAX:
+        raise Exception(f"User last name max {USER_LAST_NAME_MAX} characters", 400)
+    return user_last_name
+    
+##############################
+USER_USERNAME_MIN = 2
+USER_USERNAME_MAX = 20
+def validate_user_username():
+    user_username = request.form.get("user_username", "").strip()
+    if len(user_username) < USER_USERNAME_MIN:
+        raise Exception(f"Username minimal {USER_USERNAME_MIN} characters", 400)
+    user_username = request.form.get("user_username", "").strip()
+    if len(user_username) > USER_USERNAME_MAX:
+        raise Exception(f"Username max {USER_USERNAME_MAX} characters", 400)
+    return user_username
